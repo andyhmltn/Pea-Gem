@@ -14,7 +14,7 @@ describe Pea do
 		end
 	end
 
-	describe "#rende" do
+	describe "#render" do
 		it "takes a file path and renders the view" do
 			@pea.read File.join(@app_root, "templates/1.pea")
 			@pea.render(@values).should eql 'Hello world'
