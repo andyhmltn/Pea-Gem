@@ -1,32 +1,40 @@
 class Pea
 
-	attr_accessor :file_contents, :hash, :replaced
+	attr_accessor :file_contents, :file, :hash, :rendered
 
 	def initialize(file = nil)
-		self.open_and_read_file(file)
 	end
 
-	def self.open_and_read_file(file)
+
+	def read(file)
+
+		@file = File.new file, "r"
+
 		if !file.empty?
-			file = File.new(file, "r")
-			@file_contents = ""
-			while line = file.gets
-				@file_contents << line
+			file_contents = ""
+			while line = @file.gets
+				file_contents << line
 			end
 		end
+
+		@contents = file_contents
 	end
 
-	def self.replaced
+	def read_static(static_contents)
+		@contents = static_contents
+	end
+
+	def render(hash)
+		@hash = hash
+		
 		@hash.each do |key, value|
-			@file_contents = @file_contents.gsub(/\{#{Regexp.escape(key)}\}/, value)
+			unless value.nil?
+				@contents = @contents.gsub(/\{#{Regexp.escape(key)}\}/, value)
+			end
 		end
 
-		@file_contents
-	end
+		@rendered = @contents
 
-	def self.render(file, hash)
-		self.open_and_read_file(file)
-		@hash = hash
-		self.replaced
+		@rendered
 	end
 end
