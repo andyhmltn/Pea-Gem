@@ -60,6 +60,13 @@ describe Pea do
 
 			pea_.should eql 'Hello world'
 		end
+
+		it "should save the rendered string" do
+			@pea.read 'templates/1.pea', File.dirname(__FILE__)
+			@pea.render({:phrase => 'world'})
+
+			@pea.rendered.should eql 'Hello world'
+		end
 	end
 
 end
