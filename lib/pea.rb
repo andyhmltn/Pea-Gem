@@ -1,12 +1,19 @@
 class Pea
 
-	attr_accessor :file_contents, :file, :hash, :rendered
+	attr_accessor :contents, :file, :hash, :rendered
 
-	def initialize(file = nil)
+	def initialize(file = nil, relative_to = nil)
+		unless file.nil?
+			self.read(file, relative_to)
+		end
 	end
 
 
-	def read(file)
+	def read(file, relative_to = nil)
+
+		unless relative_to.nil?
+			file = File.join(relative_to, file)
+		end
 
 		@file = File.new file, "r"
 
@@ -18,10 +25,14 @@ class Pea
 		end
 
 		@contents = file_contents
+
+		return self
 	end
 
 	def read_static(static_contents)
 		@contents = static_contents
+
+		return self
 	end
 
 	def render(hash)
