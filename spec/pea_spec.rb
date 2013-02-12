@@ -6,6 +6,8 @@ describe Pea do
 		@pea = Pea.new
 		@values = {:phrase => 'world'}
 		@app_root = File.expand_path(File.dirname(__FILE__))
+
+		Dir.chdir @app_root
 	end
 
 	describe "#new" do
@@ -37,7 +39,7 @@ describe Pea do
 		end
 
 		it "reads a relative path" do
-			@pea.read 'templates/1.pea', File.dirname(__FILE__)
+			@pea.read 'templates/1.pea'
 			@pea.contents.should eql 'Hello {phrase}'
 		end
 
