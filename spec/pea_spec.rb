@@ -16,7 +16,7 @@ describe Pea do
 		end
 
 		it "takes a relative file path and reads it" do
-			pea_ = Pea.new 'templates/1.pea', File.dirname(__FILE__)
+			pea_ = Pea.new 'templates/1.pea'
 
 			pea_.contents.should eql 'Hello {phrase}'
 		end
@@ -39,8 +39,8 @@ describe Pea do
 		end
 
 		it "reads a relative path" do
-			@pea.read 'templates/1.pea'
-			@pea.contents.should eql 'Hello {phrase}'
+			@pea.read '../examples/template.pea'
+			@pea.contents.should eql 'Hello {phrase}!'
 		end
 
 		it "takes a string and renders the correct view" do
@@ -64,7 +64,7 @@ describe Pea do
 		end
 
 		it "should save the rendered string" do
-			@pea.read 'templates/1.pea', File.dirname(__FILE__)
+			@pea.read 'templates/1.pea'
 			@pea.render({:phrase => 'world'})
 
 			@pea.rendered.should eql 'Hello world'
