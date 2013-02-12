@@ -26,16 +26,9 @@ Then just render it like so:
 
 	puts my_template.render(values) #=> Hello world my name is Cake!
 
-Relative Paths
---------
-
-Currently, if you have a template file in a subdirectory, you will need to pass the current directory in to reference it relatively:
-
-	Pea.new 'templates/1.pea', File.dirname(__FILE__)
-
-With a directory structure like so:
-	app/example.rb
-	app/templates/1.pea
+You can also reference relative paths to the file you are running the script in. For example:
+	
+	my_template = Pea.new '../templates/site/1.pea'
 
 Rendering from a string
 ----------
