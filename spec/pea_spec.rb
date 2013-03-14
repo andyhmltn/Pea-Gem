@@ -71,4 +71,24 @@ describe Pea do
 		end
 	end
 
+	describe "#version" do
+		it "returns an integers for MAJOR, MINOR and PATCH" do
+			Pea::Version::MAJOR.should be_a Fixnum
+			Pea::Version::MINOR.should be_a Fixnum
+			Pea::Version::PATCH.should be_a Fixnum
+		end
+
+		it "returns a full version number" do
+			Pea::Version::FULL.split('.').size.should eql 3
+		end
+
+		it "allows for a to_s method" do
+			Pea::Version.to_s.split('.').size.should eql 3
+		end
+
+		it "allows for a to_s method that is equal to the full version number" do
+			Pea::Version.to_s.should eql Pea::Version::FULL
+		end
+	end
+
 end

@@ -1,4 +1,17 @@
 class Pea
+	module Version
+		MAJOR  = 1
+    	MINOR  = 3
+    	PATCH  = 0
+
+    	FULL = [MAJOR, MINOR, PATCH].join('.')
+
+    	class << self
+    		def to_s
+    			FULL
+    		end
+    	end
+	end
 
 	attr_accessor :contents, :file, :hash, :rendered
 
