@@ -2,19 +2,14 @@ class Pea
 
 	attr_accessor :contents, :file, :hash, :rendered
 
-	def initialize(file = nil, relative_to = nil)
+	def initialize(file = nil)
 		unless file.nil?
-			self.read(file, relative_to)
+			self.read(file)
 		end
 	end
 
 
-	def read(file, relative_to = nil)
-
-		unless relative_to.nil?
-			file = File.join(relative_to, file)
-		end
-
+	def read(file)
 		@file = File.new file, "r"
 
 		if !file.empty?
