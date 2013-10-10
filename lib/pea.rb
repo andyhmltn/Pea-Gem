@@ -46,7 +46,7 @@ class Pea
 	def render(hash)
 		@hash = hash
 		
-		pre_rendered_content = @contents
+		template = @contents
 
 		@hash.each do |key, value|
 			unless value.nil?
@@ -55,7 +55,7 @@ class Pea
 		end
 
 		@rendered = @contents
-		@contents = pre_rendered_content
+		@contents = template
 
 		return @rendered
 	end
