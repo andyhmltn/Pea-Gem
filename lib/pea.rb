@@ -46,6 +46,8 @@ class Pea
 	def render(hash)
 		@hash = hash
 		
+		pre_rendered_content = @contents
+
 		@hash.each do |key, value|
 			unless value.nil?
 				@contents = @contents.gsub(/\{#{Regexp.escape(key)}\}/, value)
@@ -53,7 +55,8 @@ class Pea
 		end
 
 		@rendered = @contents
+		@contents = pre_rendered_content
 
-		@rendered
+		return @rendered
 	end
 end
