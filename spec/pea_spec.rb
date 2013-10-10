@@ -69,6 +69,14 @@ describe Pea do
 
 			@pea.rendered.should eql 'Hello world'
 		end
+
+		it "should render the same template twice with different values" do
+			@pea.read 'templates/1.pea'
+			@pea.render({:phrase => 'world'})
+			@pea.render({:phrase => 'earth'})
+
+			@pea.rendered.should eql 'Hello earth'
+		end
 	end
 
 	describe "#version" do
