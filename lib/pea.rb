@@ -2,7 +2,7 @@ class Pea
 	module Version
 		MAJOR  = 1
     	MINOR  = 3
-    	PATCH  = 0
+    	PATCH  = 1
 
     	FULL = [MAJOR, MINOR, PATCH].join('.')
 
@@ -46,6 +46,8 @@ class Pea
 	def render(hash)
 		@hash = hash
 		
+		template = @contents
+
 		@hash.each do |key, value|
 			unless value.nil?
 				@contents = @contents.gsub(/\{#{Regexp.escape(key)}\}/, value)
@@ -53,7 +55,8 @@ class Pea
 		end
 
 		@rendered = @contents
+		@contents = template
 
-		@rendered
+		return @rendered
 	end
 end
